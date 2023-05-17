@@ -1,0 +1,9 @@
+To compile the lex/yacc files and generate your compiler:
+
+bison -d calculator.y
+flex calculator.l
+gcc -o calculator lex.yy.c calculator.tab.c -ll
+
+To execute your compiler: 
+
+./calculator
