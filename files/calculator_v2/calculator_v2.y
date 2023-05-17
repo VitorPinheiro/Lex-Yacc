@@ -1,0 +1,48 @@
+%{
+    #include <stdio.h>
+
+    void yyerror(char *);
+    int yylex(void);
+    int sym[26];
+
+    
+%}
+
+%token INTEGER VARIABLE END
+%left '+' '-'
+%left '*' '/'
+
+%%
+program:
+ program statement '\n'
+ | 
+ ;
+
+statement:
+ expr { printf("%d\n", $1); }
+ | VARIABLE '=' expr { sym[$1] = $3; }
+ | END { printf("May the force be with you.\n"); return(0); }  
+ |
+ ;
+
+expr:
+ INTEGER
+ | VARIABLE { $$ = sym[$1]; }
+ | expr '+' expr { $$ = $1 + $3; }
+ | expr '-' expr { $$ = $1 - $3; }
+ | expr '*' expr { $$ = $1 * $3; }
+ | expr '/' expr { $$ = $1 / $3; }
+ | '(' expr ')' { $$ = $2; }
+ ;
+%%
+
+void yyerror(char *s) {
+ fprintf(stderr, "%s\n", s);
+ return;
+}
+
+int main(void) {
+ printf("Welcome! Enter a expression to be evaluated, please.\n");
+ yyparse();
+ return 0;
+} 
