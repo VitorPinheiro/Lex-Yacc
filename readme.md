@@ -7,7 +7,7 @@ Dockerfile para criar uma imagem docker que gera um container Ubuntu que já con
 Primeiro construa a sua imagem docker a partir do Dockerfile: lex-yacc-img.dockerfile
 
 ```bash
-docker build -f .\lex-yacc-img.dockerfile -t lexyacc .
+docker build -f lex-yacc-img.dockerfile -t lexyacc .
 ```
 
 Para executar a imagem digite este comando:
