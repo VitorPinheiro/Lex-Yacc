@@ -5,5 +5,3 @@ flex calculator.l
 gcc -o calculator lex.yy.c calculator.tab.c -ll
 
 To execute your compiler: 
-
-./calculator
